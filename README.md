@@ -1,4 +1,4 @@
-# automate_vba_macro_documentation
+# Automate VBA Macro Documentation
 
 Problem Statement:
 The goal is to develop a solution that automates the documentation and understanding of legacy VBA macros used in critical processes across DFIN, facilitating their transformation into modern technologies and IT platforms.  
