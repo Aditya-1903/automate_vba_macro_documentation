@@ -8,7 +8,7 @@ from langchain_groq import ChatGroq
 llm = ChatGroq(
         temperature=0,
         model="mixtral-8x7b-32768",
-        api_key="gsk_***"  # Replace with your actual API key
+        api_key=os.environ['GROQ_API_KEY']  # Replace with your actual API key
     )
 
 # Ensure necessary directories exist
@@ -209,7 +209,7 @@ def refactor_vba(vba_code_path):
 
     prompt = PromptTemplate(template=prompt_template_refactor)
     query_with_prompt = prompt.format(question=vba_code)
-    vba_macro_refactor = llm.invoke(query_with_prompt).content.replace('\n', '\n\n')
+    vba_macro_refactor = llm.invoke(query_with_prompt).content
     
     output_file_path = os.path.join('outputs', 'vba_macro_refactor.txt')
     with open(output_file_path, 'w') as f:
@@ -297,6 +297,8 @@ def main():
         st.session_state.file_name = uploaded_file.name  
 
 # Use Case 1 Page
+@st.cache_data
+@st.cache_resource
 def use_case1():
     st.title("Use Case 1: VBA Macro Documentation")
 
@@ -442,7 +444,7 @@ def use_case8():
         vba_macro_refactor = refactor_vba(os.path.join("vba", "vba_code.txt"))
         st.subheader("VBA Macro Refactor")
         if vba_macro_refactor:
-            st.text(vba_macro_refactor)
+            st.markdown(vba_macro_refactor)
 
             refactor_file = 'outputs/vba_macro_refactor.txt'
             with open(refactor_file, 'r') as file:
