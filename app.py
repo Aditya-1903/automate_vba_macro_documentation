@@ -326,8 +326,6 @@ def use_case1():
         st.experimental_rerun()
 
 # Use Case 2 Page
-@st.cache_data
-@st.cache_resource
 def use_case2():
     st.title("Use Case 2: Functional Logic Extractor")
 
@@ -360,8 +358,6 @@ def use_case2():
 
 
 # Use Case 3 Page
-@st.cache_data
-@st.cache_resource
 def use_case3():
     st.title("Use Case 3: Process Flow Visualization")
 
@@ -375,8 +371,6 @@ def use_case3():
         st.components.v1.html(html_file.read(), height=800)
 
 # Use Case 4 Page
-@st.cache_data
-@st.cache_resource
 def use_case4():
     st.title("Use Case 4: Code Quality and Efficiency Analyzer")
 
@@ -406,8 +400,6 @@ def use_case4():
         st.experimental_rerun()
 
 # Use Case 7 Page
-@st.cache_data
-@st.cache_resource
 def use_case7():
     st.title("Use Case 7: Data Flow Analysis Optimization")
 
@@ -438,8 +430,6 @@ def use_case7():
 
 
 # Use Case 8 Page
-@st.cache_data
-@st.cache_resource
 def use_case8():
     st.title("Use Case 8: Legacy Macro Modernization Assistant")
 
@@ -468,8 +458,6 @@ def use_case8():
         st.experimental_rerun()
 
 # Use Case 9 Page
-@st.cache_data
-@st.cache_resource
 def use_case9():
     st.title("Use Case 9: Security and Compliance Checker")
 
