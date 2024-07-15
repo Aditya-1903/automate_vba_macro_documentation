@@ -8,7 +8,7 @@ from langchain_groq import ChatGroq
 llm = ChatGroq(
         temperature=0,
         model="mixtral-8x7b-32768",
-        api_key="gsk_***"  # Replace with your actual API key
+        api_key=os.environ['GROQ_API_KEY']  # Replace with your actual API key
     )
 
 # Ensure necessary directories exist
