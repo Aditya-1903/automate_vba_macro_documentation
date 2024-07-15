@@ -209,7 +209,7 @@ def refactor_vba(vba_code_path):
 
     prompt = PromptTemplate(template=prompt_template_refactor)
     query_with_prompt = prompt.format(question=vba_code)
-    vba_macro_refactor = llm.invoke(query_with_prompt).content.replace('\n', '\n\n')
+    vba_macro_refactor = llm.invoke(query_with_prompt).content
     
     output_file_path = os.path.join('outputs', 'vba_macro_refactor.txt')
     with open(output_file_path, 'w') as f:
@@ -297,6 +297,8 @@ def main():
         st.session_state.file_name = uploaded_file.name  
 
 # Use Case 1 Page
+@st.cache_data
+@st.cache_resource
 def use_case1():
     st.title("Use Case 1: VBA Macro Documentation")
 
@@ -324,6 +326,8 @@ def use_case1():
         st.experimental_rerun()
 
 # Use Case 2 Page
+@st.cache_data
+@st.cache_resource
 def use_case2():
     st.title("Use Case 2: Functional Logic Extractor")
 
@@ -356,6 +360,8 @@ def use_case2():
 
 
 # Use Case 3 Page
+@st.cache_data
+@st.cache_resource
 def use_case3():
     st.title("Use Case 3: Process Flow Visualization")
 
@@ -369,6 +375,8 @@ def use_case3():
         st.components.v1.html(html_file.read(), height=800)
 
 # Use Case 4 Page
+@st.cache_data
+@st.cache_resource
 def use_case4():
     st.title("Use Case 4: Code Quality and Efficiency Analyzer")
 
@@ -398,6 +406,8 @@ def use_case4():
         st.experimental_rerun()
 
 # Use Case 7 Page
+@st.cache_data
+@st.cache_resource
 def use_case7():
     st.title("Use Case 7: Data Flow Analysis Optimization")
 
@@ -428,6 +438,8 @@ def use_case7():
 
 
 # Use Case 8 Page
+@st.cache_data
+@st.cache_resource
 def use_case8():
     st.title("Use Case 8: Legacy Macro Modernization Assistant")
 
@@ -442,7 +454,7 @@ def use_case8():
         vba_macro_refactor = refactor_vba(os.path.join("vba", "vba_code.txt"))
         st.subheader("VBA Macro Refactor")
         if vba_macro_refactor:
-            st.text(vba_macro_refactor)
+            st.markdown(vba_macro_refactor)
 
             refactor_file = 'outputs/vba_macro_refactor.txt'
             with open(refactor_file, 'r') as file:
@@ -456,6 +468,8 @@ def use_case8():
         st.experimental_rerun()
 
 # Use Case 9 Page
+@st.cache_data
+@st.cache_resource
 def use_case9():
     st.title("Use Case 9: Security and Compliance Checker")
 
