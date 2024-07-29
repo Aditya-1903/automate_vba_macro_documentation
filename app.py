@@ -297,8 +297,6 @@ def main():
         st.session_state.file_name = uploaded_file.name  
 
 # Use Case 1 Page
-@st.cache_data
-@st.cache_resource
 def use_case1():
     st.title("Use Case 1: VBA Macro Documentation")
 
