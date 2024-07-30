@@ -287,7 +287,7 @@ def main():
     Use the sidebar to navigate between different use cases.
     """)
 
-    uploaded_file = st.file_uploader("Upload a .xls, .xlsm or .xlsb file", type=["xls", "xlsm", "xlsb])
+    uploaded_file = st.file_uploader("Upload a .xls, .xlsm or .xlsb file", type=["xls", "xlsm", "xlsb"])
     
     if uploaded_file is not None:
         file_path = os.path.join("uploads", uploaded_file.name)
