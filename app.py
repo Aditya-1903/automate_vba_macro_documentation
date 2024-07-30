@@ -280,14 +280,14 @@ def main():
     This tool allows you to upload excel workbooks and automate VBA Macro Documentation.
     
     ### Features:
-    - **File Upload**: Accepts `.xls` and `.xlsm` files.
+    - **File Upload**: Accepts `.xls`,`.xlsm` or `.xlsb` files.
     - **VBA Code Extraction**: Extracts VBA code and saves it as a text file.
     - **VBA Code Analysis**: Analyzes the extracted VBA code and categorizes the elements.
     
     Use the sidebar to navigate between different use cases.
     """)
 
-    uploaded_file = st.file_uploader("Upload a .xls or .xlsm file", type=["xls", "xlsm"])
+    uploaded_file = st.file_uploader("Upload a .xls, .xlsm or .xlsb file", type=["xls", "xlsm", "xlsb])
     
     if uploaded_file is not None:
         file_path = os.path.join("uploads", uploaded_file.name)
