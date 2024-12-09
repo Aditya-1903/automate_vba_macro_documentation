@@ -8,7 +8,7 @@ from langchain_groq import ChatGroq
 llm = ChatGroq(
         temperature=0,
         model="mixtral-8x7b-32768",
-        api_key="gsk_***"  # Replace with your actual API key
+        api_key=os.environ['GROQ_API_KEY']  # Replace with your actual API key
     )
 
 # Ensure necessary directories exist
@@ -209,7 +209,7 @@ def refactor_vba(vba_code_path):
 
     prompt = PromptTemplate(template=prompt_template_refactor)
     query_with_prompt = prompt.format(question=vba_code)
-    vba_macro_refactor = llm.invoke(query_with_prompt).content.replace('\n', '\n\n')
+    vba_macro_refactor = llm.invoke(query_with_prompt).content
     
     output_file_path = os.path.join('outputs', 'vba_macro_refactor.txt')
     with open(output_file_path, 'w') as f:
@@ -280,14 +280,14 @@ def main():
     This tool allows you to upload excel workbooks and automate VBA Macro Documentation.
     
     ### Features:
-    - **File Upload**: Accepts `.xls` and `.xlsm` files.
+    - **File Upload**: Accepts `.xls`,`.xlsm` or `.xlsb` files.
     - **VBA Code Extraction**: Extracts VBA code and saves it as a text file.
     - **VBA Code Analysis**: Analyzes the extracted VBA code and categorizes the elements.
     
     Use the sidebar to navigate between different use cases.
     """)
 
-    uploaded_file = st.file_uploader("Upload a .xls or .xlsm file", type=["xls", "xlsm"])
+    uploaded_file = st.file_uploader("Upload a .xls, .xlsm or .xlsb file", type=["xls", "xlsm", "xlsb"])
     
     if uploaded_file is not None:
         file_path = os.path.join("uploads", uploaded_file.name)
@@ -442,7 +442,7 @@ def use_case8():
         vba_macro_refactor = refactor_vba(os.path.join("vba", "vba_code.txt"))
         st.subheader("VBA Macro Refactor")
         if vba_macro_refactor:
-            st.text(vba_macro_refactor)
+            st.markdown(vba_macro_refactor)
 
             refactor_file = 'outputs/vba_macro_refactor.txt'
             with open(refactor_file, 'r') as file:
